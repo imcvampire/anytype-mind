@@ -1,0 +1,61 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/scripts/session-start.sh",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/scripts/find-python.sh .claude/scripts/classify-message.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "CallMcpTool",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/scripts/find-python.sh .claude/scripts/validate-object.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/scripts/pre-compact.sh",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'INPUT=$(cat); ACTIVE=$(printf \"%s\" \"$INPUT\" | bash .claude/scripts/find-python.sh -c \"import json,sys; print(json.load(sys.stdin).get(\\\"stop_hook_active\\\",False))\" 2>/dev/null || echo False); [ \"$ACTIVE\" = \"True\" ] && exit 0; echo \"Session end checklist:\n- Archive completed projects? (update status property to completed)\n- New objects have relations? (orphans are bugs)\n- Brain notes updated? (Memories, Patterns, Key Decisions)\n- Run /vault-audit if many objects were created/modified\"'",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

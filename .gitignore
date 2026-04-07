@@ -1,0 +1,19 @@
+# Platform entry points (generated from SKILL.md)
+CLAUDE.md
+AGENTS.md
+
+# OS
+.DS_Store
+.Trash/
+
+# Claude Code (local settings are personal)
+.claude/settings.local.json
+
+# Local Anytype config (space selection, personal)
+.space.md
+
+# Anytype state
+.anytype-state/
+
+# Node modules (if npx caches locally)
+node_modules/

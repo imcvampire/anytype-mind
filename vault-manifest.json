@@ -1,0 +1,114 @@
+{
+  "template": "anytype-mind",
+  "version": "4.0.0",
+  "released": "2026-04-06",
+  "backend": "anytype",
+  "api_version": "2025-11-08",
+  "infrastructure": [
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    ".gitignore",
+    ".claude/**",
+    "references/**",
+    "setup/**",
+    "vault-manifest.json"
+  ],
+  "types": {
+    "work_note": {
+      "name": "Work Note",
+      "layout": "basic",
+      "required_properties": ["description", "status", "quarter"]
+    },
+    "incident": {
+      "name": "Incident",
+      "layout": "basic",
+      "required_properties": ["description", "status", "quarter", "ticket", "severity", "incident_role"]
+    },
+    "one_on_one": {
+      "name": "1:1 Note",
+      "layout": "basic",
+      "required_properties": ["description", "quarter"]
+    },
+    "decision": {
+      "name": "Decision Record",
+      "layout": "basic",
+      "required_properties": ["description", "status"]
+    },
+    "person": {
+      "name": "Person",
+      "layout": "profile",
+      "required_properties": ["description", "title"]
+    },
+    "team": {
+      "name": "Team",
+      "layout": "basic",
+      "required_properties": ["description"]
+    },
+    "competency": {
+      "name": "Competency",
+      "layout": "basic",
+      "required_properties": ["description"]
+    },
+    "pr_analysis": {
+      "name": "PR Analysis",
+      "layout": "basic",
+      "required_properties": ["description", "related_person", "review_cycle"]
+    },
+    "review_brief": {
+      "name": "Review Brief",
+      "layout": "basic",
+      "required_properties": ["description", "review_cycle"]
+    },
+    "brain_note": {
+      "name": "Brain Note",
+      "layout": "basic",
+      "required_properties": ["description"]
+    },
+    "brag_entry": {
+      "name": "Brag Entry",
+      "layout": "basic",
+      "required_properties": ["description", "quarter"]
+    },
+    "thinking_note": {
+      "name": "Thinking Note",
+      "layout": "basic",
+      "required_properties": ["description"]
+    }
+  },
+  "properties": {
+    "vault_tags": {"format": "multi_select"},
+    "status": {"format": "select"},
+    "quarter": {"format": "select"},
+    "ticket": {"format": "text"},
+    "severity": {"format": "select"},
+    "incident_role": {"format": "select"},
+    "review_cycle": {"format": "select"},
+    "related_person": {"format": "object"},
+    "related_team": {"format": "object"},
+    "project_name": {"format": "text"},
+    "title": {"format": "text"}
+  },
+  "collections": [
+    "Active Work",
+    "Archived Work",
+    "Incidents",
+    "1:1 Notes",
+    "People",
+    "Teams",
+    "Brag Entries",
+    "Evidence",
+    "Competencies",
+    "Brain Notes",
+    "Mind Dashboard"
+  ],
+  "brain_notes": [
+    "North Star",
+    "Memories",
+    "Key Decisions",
+    "Patterns",
+    "Gotchas",
+    "Skills"
+  ]
+}
